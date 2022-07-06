@@ -1,0 +1,10 @@
+.DS_Store
+*.log
+*.bak
+*~
+.*.swp
+*.iml
+*.test
+*.iml
+coverage.out
+.idea
