@@ -22,11 +22,11 @@ type errorResponse struct {
 // Error represents an error response from the Seeweb API.
 type Error struct {
 	ErrorResponse *Response
-	Code          int         `json:"code,omitempty"`
-	Errors        interface{} `json:"errors,omitempty"`
-	Message       string      `json:"message,omitempty"`
+	ErrorCode     int    `json:"error_code,omitempty"`
+	Status        string `json:"status,omitempty"`
+	Message       string `json:"message,omitempty"`
 }
 
 func (e *Error) Error() string {
-	return fmt.Sprintf("%s API call to %s failed %v. Code: %d, Errors: %v, Message: %s", e.ErrorResponse.Response.Request.Method, e.ErrorResponse.Response.Request.URL.String(), e.ErrorResponse.Response.Status, e.Code, e.Errors, e.Message)
+	return fmt.Sprintf("%s API call to %s failed %v. Code: %d, Status: %s, Message: %s", e.ErrorResponse.Response.Request.Method, e.ErrorResponse.Response.Request.URL.String(), e.ErrorResponse.Response.Status, e.ErrorCode, e.Status, e.Message)
 }
