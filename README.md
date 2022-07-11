@@ -1,6 +1,42 @@
 # go-seeweb
 Seeweb API client in Go, primarily used by the [Seeweb](https://github.com/uwtrilogyseaward0m/terraform-provider-seeweb) provider in Terraform.
 
+## Installation
+```bash
+go get github.com/uwtrilogyseaward0m/go-seeweb/seeweb
+```
+
+## Example usage
+```go
+package main
+
+import (
+	"fmt"
+	"os"
+
+	"github.com/uwtrilogyseaward0m/go-seeweb/seeweb"
+)
+
+func main() {
+	client, err := seeweb.NewClient(&seeweb.Config{Token: os.Getenv("SEEWEB_TOKEN")})
+	if err != nil {
+		panic(err)
+	}
+
+	resp, raw, err := client.Server.List()
+	if err != nil {
+		panic(err)
+	}
+
+	for _, server := range resp.Server {
+		fmt.Println(server.Name)
+	}
+
+	// All calls returns the raw *http.Response for further inspection.
+	fmt.Println(raw.Response.StatusCode)
+}
+```
+
 ### Testing
 
 Run all unit tests with `make test`
