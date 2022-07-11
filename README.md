@@ -28,11 +28,25 @@ func main() {
 		panic(err)
 	}
 
+  fmt.Println("Servers...")
 	for _, server := range resp.Server {
 		fmt.Println(server.Name)
 	}
 
 	// All calls returns the raw *http.Response for further inspection.
+	fmt.Println(raw.Response.StatusCode)
+
+	resp2, raw, err := client.Action.List()
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Actions...")
+	for _, action := range resp2.Actions {
+		fmt.Println(action.ID)
+	}
+
+	// All calls returns the raw *http.response for further inspection.
 	fmt.Println(raw.Response.StatusCode)
 }
 ```
