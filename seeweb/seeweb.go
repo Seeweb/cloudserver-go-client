@@ -34,6 +34,7 @@ type Client struct {
 	client  *http.Client
 	Config  *Config
 	Server  *ServerService
+	Action  *ActionService
 }
 
 // Response is a wrapper around http.Response
@@ -72,7 +73,9 @@ func NewClient(config *Config) (*Client, error) {
 		Config:  config,
 	}
 
+	// Registration of every Entity Service in the Client
 	c.Server = &ServerService{c}
+	c.Action = &ActionService{c}
 
 	return c, nil
 }

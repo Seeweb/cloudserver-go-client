@@ -33,19 +33,6 @@ type Server struct {
 	User         string    `json:"user"`
 }
 
-type Action struct {
-	ID           int       `json:"id"`
-	Status       string    `json:"status"`
-	User         string    `json:"user"`
-	CreatedAt    time.Time `json:"created_at"`
-	StartedAt    time.Time `json:"started_at"`
-	CompletedAt  time.Time `json:"completed_at"`
-	Resource     string    `json:"resource"`
-	ResourceType string    `json:"resource_type"`
-	Type         string    `json:"type"`
-	Progress     int       `json:"progress"`
-}
-
 type SeewebServerCreateRequest struct {
 	Plan     string `json:"plan"`
 	Location string `json:"location"`
