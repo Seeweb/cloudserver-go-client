@@ -18,36 +18,36 @@ import (
 )
 
 func main() {
-	client, err := seeweb.NewClient(&seeweb.Config{Token: os.Getenv("SEEWEB_TOKEN")})
-	if err != nil {
-		panic(err)
-	}
+  client, err := seeweb.NewClient(&seeweb.Config{Token: os.Getenv("SEEWEB_TOKEN")})
+  if err != nil {
+    panic(err)
+  }
 
-	resp, raw, err := client.Server.List()
-	if err != nil {
-		panic(err)
-	}
+  resp, raw, err := client.Server.List()
+  if err != nil {
+    panic(err)
+  }
 
   fmt.Println("Servers...")
-	for _, server := range resp.Server {
-		fmt.Println(server.Name)
-	}
+  for _, server := range resp.Server {
+    fmt.Println(server.Name)
+  }
 
-	// All calls returns the raw *http.Response for further inspection.
-	fmt.Println(raw.Response.StatusCode)
+  // All calls returns the raw *http.Response for further inspection.
+  fmt.Println(raw.Response.StatusCode)
 
-	resp2, raw, err := client.Action.List()
-	if err != nil {
-		panic(err)
-	}
+  resp2, raw, err := client.Action.List()
+  if err != nil {
+    panic(err)
+  }
 
-	fmt.Println("Actions...")
-	for _, action := range resp2.Actions {
-		fmt.Println(action.ID)
-	}
+  fmt.Println("Actions...")
+  for _, action := range resp2.Actions {
+    fmt.Println(action.ID)
+  }
 
-	// All calls returns the raw *http.response for further inspection.
-	fmt.Println(raw.Response.StatusCode)
+  // All calls returns the raw *http.response for further inspection.
+  fmt.Println(raw.Response.StatusCode)
 }
 ```
 
