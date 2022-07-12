@@ -30,11 +30,12 @@ type Config struct {
 
 // Client manages the communication with the Seeweb API
 type Client struct {
-	baseURL *url.URL
-	client  *http.Client
-	Config  *Config
-	Server  *ServerService
-	Action  *ActionService
+	baseURL  *url.URL
+	client   *http.Client
+	Config   *Config
+	Server   *ServerService
+	Action   *ActionService
+	Template *TemplateService
 }
 
 // Response is a wrapper around http.Response
@@ -76,6 +77,7 @@ func NewClient(config *Config) (*Client, error) {
 	// Registration of every Entity Service in the Client
 	c.Server = &ServerService{c}
 	c.Action = &ActionService{c}
+	c.Template = &TemplateService{c}
 
 	return c, nil
 }
