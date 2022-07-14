@@ -36,6 +36,7 @@ type Client struct {
 	Server   *ServerService
 	Action   *ActionService
 	Template *TemplateService
+	Group    *GroupService
 	Region   *RegionService
 	Plan     *PlanService
 }
@@ -80,6 +81,7 @@ func NewClient(config *Config) (*Client, error) {
 	c.Server = &ServerService{c}
 	c.Action = &ActionService{c}
 	c.Template = &TemplateService{c}
+	c.Group = &GroupService{c}
 	c.Region = &RegionService{c}
 	c.Plan = &PlanService{c}
 
