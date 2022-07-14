@@ -38,7 +38,7 @@ type SeewebServerCreateRequest struct {
 	Location string `json:"location"`
 	Image    string `json:"image"`
 	Notes    string `json:"notes"`
-	SSHKey   string `json:"ssh_key"`
+	SSHKey   string `json:"ssh_key,omitempty"`
 }
 type SeewebServerCreateResponse struct {
 	Status   string  `json:"status"`
