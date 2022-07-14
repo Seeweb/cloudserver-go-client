@@ -42,7 +42,7 @@ func (a *TemplateService) Get(id string) (*SeewebTemplateGetResponse, *Response,
 	return v, resp, nil
 }
 
-// List lists all existing servers.
+// List lists all existing plans.
 func (a *TemplateService) List() (*SeewebTemplateListResponse, *Response, error) {
 	u := "/templates"
 	v := new(SeewebTemplateListResponse)
