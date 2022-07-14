@@ -16,7 +16,7 @@ type Plan struct {
 	RAM              string              `json:"ram"`
 	Disk             string              `json:"disk"`
 	HourlyPrice      float64             `json:"hourly_price"`
-	MontlyPrice      int                 `json:"montly_price"`
+	MontlyPrice      float64             `json:"montly_price"`
 	Windows          bool                `json:"windows"`
 	Available        bool                `json:"available"`
 	AvailableRegions []*AvailableRegions `json:"available_regions"`

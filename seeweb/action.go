@@ -10,7 +10,7 @@ import (
 type ActionService service
 
 type Action struct {
-	ID           int       `json:"id"`
+	ID           float64   `json:"id"`
 	Status       string    `json:"status"`
 	User         string    `json:"user"`
 	CreatedAt    time.Time `json:"created_at"`
