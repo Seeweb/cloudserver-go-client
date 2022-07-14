@@ -58,8 +58,8 @@ type SeewebServerDeleteResponse struct {
 }
 
 type SeewebServerUpdateRequest struct {
-	Note  string `json:"note"`
-	Group string `json:"group"`
+	Note  string `json:"note,omitempty"`
+	Group string `json:"group,omitempty"`
 }
 
 type SeewebServerUpdateResponse struct {
