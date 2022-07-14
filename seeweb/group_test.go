@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"reflect"
+	"strconv"
 	"testing"
 )
 
@@ -82,10 +83,10 @@ func TestGroupDelete(t *testing.T) {
 	setup()
 	defer teardown()
 
-	groupID := "2"
+	groupID := 2
 	input := groupID
 
-	mux.HandleFunc(fmt.Sprintf("/groups/%s", groupID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/groups/%s", strconv.Itoa(groupID)), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, "DELETE")
 		w.Write([]byte(`{"status":"ok"}`))
 	})

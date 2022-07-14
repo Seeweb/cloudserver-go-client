@@ -1,6 +1,9 @@
 package seeweb
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 // GroupService handles the communication with group
 // related methods of the Seeweb API.
@@ -57,8 +60,8 @@ func (s *GroupService) Create(createGroupRequest *SeewebGroupCreateRequest) (*Se
 }
 
 // Delete removes an existing group.
-func (s *GroupService) Delete(id string) (*SeewebGroupDeleteResponse, *Response, error) {
-	u := fmt.Sprintf("/groups/%s", id)
+func (s *GroupService) Delete(id int) (*SeewebGroupDeleteResponse, *Response, error) {
+	u := fmt.Sprintf("/groups/%s", strconv.Itoa(id))
 	v := new(SeewebGroupDeleteResponse)
 
 	resp, err := s.client.newRequestDo("DELETE", u, nil, &v)
