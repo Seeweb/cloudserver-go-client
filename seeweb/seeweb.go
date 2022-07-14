@@ -175,10 +175,10 @@ func (c *Client) checkResponse(res *Response) error {
 
 func (c *Client) decodeErrorResponse(res *Response) error {
 	// Try to decode error response or fallback with standard error
-	v := &errorResponse{Error: &Error{ErrorResponse: res}}
+	v := &errorResponse{ErrorResponse: res}
 	if err := c.DecodeJSON(res, v); err != nil {
 		return fmt.Errorf("%s API call to %s failed: %v", res.Response.Request.Method, res.Response.Request.URL.String(), res.Response.Status)
 	}
 
-	return v.Error
+	return v
 }

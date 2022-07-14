@@ -15,18 +15,14 @@ var (
 	ErrAuthFailure = errors.New("failed to authenticate using the provided Seeweb token")
 )
 
+// errorResponse represents an error response from the Seeweb API.
 type errorResponse struct {
-	Error *Error `json:"error"`
-}
-
-// Error represents an error response from the Seeweb API.
-type Error struct {
 	ErrorResponse *Response
 	ErrorCode     int    `json:"error_code,omitempty"`
 	Status        string `json:"status,omitempty"`
 	Message       string `json:"message,omitempty"`
 }
 
-func (e *Error) Error() string {
+func (e *errorResponse) Error() string {
 	return fmt.Sprintf("%s API call to %s failed %v. Code: %d, Status: %s, Message: %s", e.ErrorResponse.Response.Request.Method, e.ErrorResponse.Response.Request.URL.String(), e.ErrorResponse.Response.Status, e.ErrorCode, e.Status, e.Message)
 }
