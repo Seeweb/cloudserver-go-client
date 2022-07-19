@@ -31,6 +31,7 @@ type Server struct {
 	Status       string    `json:"status"`
 	APIVersion   string    `json:"api_version"`
 	User         string    `json:"user"`
+	Group        *string   `json:"group"`
 }
 
 type SeewebServerCreateRequest struct {

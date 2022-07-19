@@ -28,7 +28,7 @@ func TestServerCreate(t *testing.T) {
 		if !reflect.DeepEqual(v, input) {
 			t.Errorf("Request body = %+v, want %+v", v, input)
 		}
-		w.Write([]byte(`{"status":"ok","action_id":38,"server":{"name":"ec200016","ipv4":"","ipv6":"","plan":"ECS1","plan_size":{"core":"1","ram":"1024","disk":"20"},"location":"it-fr2","notes":"my first server","so":"centos-7","creation_date":"2019-04-30T15:19:48.535586+00:00","deletion_date":null,"active_flag":false,"status":"Booting","api_version":"v4","user":"admin"}}`))
+		w.Write([]byte(`{"status":"ok","action_id":38,"server":{"name":"ec200016","ipv4":"","ipv6":"","plan":"ECS1","plan_size":{"core":"1","ram":"1024","disk":"20"},"location":"it-fr2","notes":"my first server","so":"centos-7","creation_date":"2019-04-30T15:19:48.535586+00:00","deletion_date":null,"active_flag":false,"status":"Booting","api_version":"v4","user":"admin","group":null}}`))
 	})
 
 	resp, _, err := client.Server.Create(input)
@@ -53,6 +53,7 @@ func TestServerCreate(t *testing.T) {
 			Status:       "Booting",
 			APIVersion:   "v4",
 			User:         "admin",
+			Group:        nil,
 			PlanSize: &PlanSize{
 				Core: "1",
 				RAM:  "1024",
