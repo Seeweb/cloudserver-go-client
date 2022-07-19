@@ -1,12 +1,12 @@
-# go-seeweb
-Seeweb API client in Go, primarily used by the [Seeweb](https://github.com/uwtrilogyseaward0m/terraform-provider-seeweb) provider in Terraform.
+# cloudserver-go-client
+Seeweb API client in Go, primarily used by the [Seeweb](https://github.com/Seeweb/terraform-provider) provider in Terraform.
 
 ## Installation
 
-In order for the installation to work while having this library in a private repository to will need to execute the following `export GOPRIVATE="github.com/uwtrilogyseaward0m/go-seeweb"` before trying to download the library. However if you get the error `fatal: could not read Username for 'https://github.com': terminal prompts disabled`, then you will need to do an additional step, which is described in the following [link.](https://www.digitalocean.com/community/tutorials/how-to-use-a-private-go-module-in-your-own-project#providing-private-module-credentials-for-https)
+In order for the installation to work while having this library in a private repository to will need to execute the following `export GOPRIVATE="github.com/Seeweb/cloudserver-go-client"` before trying to download the library. However if you get the error `fatal: could not read Username for 'https://github.com': terminal prompts disabled`, then you will need to do an additional step, which is described in the following [link.](https://www.digitalocean.com/community/tutorials/how-to-use-a-private-go-module-in-your-own-project#providing-private-module-credentials-for-https)
 
 ```bash
-go get github.com/uwtrilogyseaward0m/go-seeweb/seeweb
+go get github.com/Seeweb/cloudserver-go-client/seeweb
 ```
 
 ## Example usage
@@ -18,7 +18,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/uwtrilogyseaward0m/go-seeweb/seeweb"
+	"github.com/Seeweb/cloudserver-go-client/seeweb"
 )
 
 func main() {

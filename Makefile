@@ -1,12 +1,12 @@
 GOFMT_FILES?=$$(find . -name '*.go' |grep -v vendor)
-PKG_NAME=go-seeweb
+PKG_NAME=cloudserver-go-client
 FILES ?= "./..."
 GOPKGS ?= $(shell go list $(FILES) | grep -v /vendor/)
 
 default: build
 
 build:
-	@go get github.com/uwtrilogyseaward0m/go-seeweb/seeweb
+	@go get github.com/Seeweb/cloudserver-go-client/seeweb
 
 test:
 	@echo "==> Testing ${PKG_NAME}"

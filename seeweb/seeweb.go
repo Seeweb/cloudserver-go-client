@@ -64,7 +64,7 @@ func NewClient(config *Config) (*Client, error) {
 		config.BaseURL = defaultBaseURL
 	}
 
-	config.UserAgent = "uwtrilogyseaward0m/go-seeweb(terraform)"
+	config.UserAgent = "Seeweb/cloudserver-go-client(terraform)"
 
 	baseURL, err := url.Parse(config.BaseURL)
 	if err != nil {

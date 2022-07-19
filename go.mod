@@ -1,3 +1,3 @@
-module github.com/uwtrilogyseaward0m/go-seeweb
+module github.com/Seeweb/cloudserver-go-client
 
 go 1.18
