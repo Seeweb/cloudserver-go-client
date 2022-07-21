@@ -12,7 +12,8 @@ import (
 )
 
 const (
-	defaultBaseURL = "https://api.seeweb.it/ecs/v2"
+	defaultBaseURL   = "https://api.seeweb.it/ecs/v2"
+	defaultUserAgent = "Seeweb/cloudserver-go-client(terraform)"
 )
 
 type service struct {
@@ -63,8 +64,6 @@ func NewClient(config *Config) (*Client, error) {
 	if config.BaseURL == "" {
 		config.BaseURL = defaultBaseURL
 	}
-
-	config.UserAgent = "Seeweb/cloudserver-go-client(terraform)"
 
 	baseURL, err := url.Parse(config.BaseURL)
 	if err != nil {
@@ -121,6 +120,8 @@ func (c *Client) newRequest(method, url string, body interface{}, options ...Req
 
 	if c.Config.UserAgent != "" {
 		req.Header.Add("User-Agent", c.Config.UserAgent)
+	} else {
+		req.Header.Add("User-Agent", defaultUserAgent)
 	}
 	return req, nil
 }
