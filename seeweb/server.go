@@ -32,6 +32,7 @@ type Server struct {
 	APIVersion   string    `json:"api_version"`
 	User         string    `json:"user"`
 	Group        *string   `json:"group"`
+	SSHKey       string    `json:"ssh_key,omitempty"`
 }
 
 type SeewebServerCreateRequest struct {
