@@ -3,7 +3,6 @@ package seeweb
 import (
 	"fmt"
 	"net/http"
-	"reflect"
 	"testing"
 	"time"
 )
@@ -94,7 +93,13 @@ func TestActionList(t *testing.T) {
 		},
 	}
 
-	if !reflect.DeepEqual(resp, want) {
+	if resp.Status != want.Status {
 		t.Errorf("returned \n\n%#v want \n\n%#v", resp, want)
+	}
+
+	for i := 0; i < len(want.Actions); i++ {
+		if !equalStructWithDatesFn(*resp.Actions[i], *want.Actions[i]) {
+			t.Errorf("returned \n\n%#v want \n\n%#v", resp, want)
+		}
 	}
 }
