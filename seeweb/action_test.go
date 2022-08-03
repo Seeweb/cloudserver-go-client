@@ -17,7 +17,7 @@ func TestActionGet(t *testing.T) {
 
 	mux.HandleFunc(fmt.Sprintf("/actions/%s", actionId), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, "GET")
-		w.Write([]byte(`{"status":"ok","action":{"id":39,"status":"completed","user":"admin","created_at":"2019-04-30T16:33:03.317800Z","started_at":"2019-04-30T16:33:03.317019Z","completed_at":"2019-04-30T16:34:04.159922Z","resource":"ec200016","resource_type":"ECS","type":"delete_server","progress":100}}`))
+		w.Write([]byte(`{"status":"ok","action":{"id":39,"status":"completed","user":"admin","created_at":"2019-04-30T16:33:03.317800+00:00","started_at":"2019-04-30T16:33:03.317019+00:00","completed_at":"2019-04-30T16:34:04.159922+00:00","resource":"ec200016","resource_type":"ECS","type":"delete_server","progress":100}}`))
 	})
 
 	resp, _, err := client.Action.Get(input)
@@ -31,22 +31,21 @@ func TestActionGet(t *testing.T) {
 			ID:           39,
 			Status:       "completed",
 			User:         "admin",
-			CreatedAt:    time.Date(2019, time.April, 30, 16, 33, 3, 317800000, time.UTC),
-			StartedAt:    time.Date(2019, time.April, 30, 16, 33, 3, 317019000, time.UTC),
-			CompletedAt:  time.Date(2019, time.April, 30, 16, 34, 4, 159922000, time.UTC),
+			CreatedAt:    time.Date(2019, time.April, 30, 16, 33, 3, 317800000, time.FixedZone("", 0)),
+			StartedAt:    time.Date(2019, time.April, 30, 16, 33, 3, 317019000, time.FixedZone("", 0)),
+			CompletedAt:  time.Date(2019, time.April, 30, 16, 34, 4, 159922000, time.FixedZone("", 0)),
 			Resource:     "ec200016",
 			ResourceType: "ECS",
 			Type:         "delete_server",
 			Progress:     100,
 		},
 	}
-	fmt.Printf("Returned Action::> %+v\n", resp.Action)
-	fmt.Printf("Wanted Action::> %+v\n", want.Action)
-	fmt.Printf("CreatedAt. Returned: %+v - Wanted: %+v\n", resp.Action.CreatedAt, want.Action.CreatedAt)
-	fmt.Printf("StartedAt. Returned: %+v - Wanted: %+v\n", resp.Action.StartedAt, want.Action.StartedAt)
-	fmt.Printf("CompletedAt. Returned: %+v - Wanted: %+v\n", resp.Action.CompletedAt, want.Action.CompletedAt)
 
-	if !reflect.DeepEqual(resp, want) {
+	if resp.Status != want.Status {
+		t.Errorf("returned \n\n%#v want \n\n%#v", resp, want)
+	}
+
+	if !equalStructWithDatesFn(*resp.Action, *want.Action) {
 		t.Errorf("returned \n\n%#v want \n\n%#v", resp, want)
 	}
 }
