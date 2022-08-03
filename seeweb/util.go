@@ -6,9 +6,10 @@ import (
 	"time"
 )
 
-// Compares two structs in similiar way of reflect.DeepEqual, but limited to
-// the fields at the root of the structs. This function was introduced because
-// dates aren't being evaluated in same way between Mac and Linux.
+// Compares two structs in similiar way of reflect.DeepEqual, but with Date
+// (time.Time) is limited to the fields at the root of the structs. This
+// function was introduced because dates aren't being evaluated in same way
+// between Mac and Linux.
 func equalStructWithDatesFn(a interface{}, b interface{}) bool {
 	va := reflect.ValueOf(a)
 	vb := reflect.ValueOf(b)
@@ -28,10 +29,9 @@ func equalStructWithDatesFn(a interface{}, b interface{}) bool {
 				return false
 			}
 		} else {
-			if valueOfA != valueOfB {
+			if !reflect.DeepEqual(valueOfA, valueOfB) {
 				return false
 			}
-
 		}
 	}
 	return true

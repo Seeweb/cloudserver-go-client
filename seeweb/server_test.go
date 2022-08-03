@@ -62,7 +62,11 @@ func TestServerCreate(t *testing.T) {
 		},
 	}
 
-	if !reflect.DeepEqual(resp, want) {
+	if resp.Status != want.Status {
+		t.Errorf("returned \n\n%#v want \n\n%#v", resp, want)
+	}
+
+	if !equalStructWithDatesFn(*resp.Server, *want.Server) {
 		t.Errorf("returned \n\n%#v want \n\n%#v", resp, want)
 	}
 }
@@ -111,6 +115,15 @@ func TestServerList(t *testing.T) {
 	if !reflect.DeepEqual(resp, want) {
 		t.Errorf("returned \n\n%#v want \n\n%#v", resp, want)
 	}
+	if resp.Status != want.Status {
+		t.Errorf("returned \n\n%#v want \n\n%#v", resp, want)
+	}
+
+	for i := 0; i < len(want.Server); i++ {
+		if !equalStructWithDatesFn(*resp.Server[i], *want.Server[i]) {
+			t.Errorf("returned \n\n%#v want \n\n%#v", resp, want)
+		}
+	}
 }
 
 func TestServerDelete(t *testing.T) {
@@ -147,6 +160,13 @@ func TestServerDelete(t *testing.T) {
 	}
 
 	if !reflect.DeepEqual(resp, want) {
+		t.Errorf("returned \n\n%#v want \n\n%#v", resp, want)
+	}
+	if resp.Status != want.Status {
+		t.Errorf("returned \n\n%#v want \n\n%#v", resp, want)
+	}
+
+	if !equalStructWithDatesFn(*resp.Action, *want.Action) {
 		t.Errorf("returned \n\n%#v want \n\n%#v", resp, want)
 	}
 }
