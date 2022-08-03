@@ -40,9 +40,9 @@ func TestActionGet(t *testing.T) {
 			Progress:     100,
 		},
 	}
-	fmt.Printf("CreatedAt... %+v\n", want.Action.CreatedAt)
-	fmt.Printf("StartedAt... %+v\n", want.Action.StartedAt)
-	fmt.Printf("CompletedAt... %+v\n", want.Action.CompletedAt)
+	fmt.Printf("CreatedAt. Returned: %+v - Wanted: %+v\n", resp.Action.CreatedAt, want.Action.CreatedAt)
+	fmt.Printf("StartedAt. Returned: %+v - Wanted: %+v\n", resp.Action.StartedAt, want.Action.StartedAt)
+	fmt.Printf("CompletedAt. Returned: %+v - Wanted: %+v\n", resp.Action.CompletedAt, want.Action.CompletedAt)
 
 	if !reflect.DeepEqual(resp, want) {
 		t.Errorf("returned \n\n%#v want \n\n%#v", resp, want)
