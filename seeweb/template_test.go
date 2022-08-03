@@ -3,7 +3,6 @@ package seeweb
 import (
 	"fmt"
 	"net/http"
-	"reflect"
 	"testing"
 	"time"
 )
@@ -38,7 +37,11 @@ func TestTemplateGet(t *testing.T) {
 		},
 	}
 
-	if !reflect.DeepEqual(resp, want) {
+	if resp.Status != want.Status {
+		t.Errorf("returned \n\n%#v want \n\n%#v", resp, want)
+	}
+
+	if !equalStructWithDatesFn(*resp.Template, *want.Template) {
 		t.Errorf("returned \n\n%#v want \n\n%#v", resp, want)
 	}
 }
@@ -80,7 +83,13 @@ func TestTemplateList(t *testing.T) {
 		},
 	}
 
-	if !reflect.DeepEqual(resp, want) {
+	if resp.Status != want.Status {
 		t.Errorf("returned \n\n%#v want \n\n%#v", resp, want)
+	}
+
+	for i := 0; i < len(want.Templates); i++ {
+		if !equalStructWithDatesFn(*resp.Templates[i], *want.Templates[i]) {
+			t.Errorf("returned \n\n%#v want \n\n%#v", resp, want)
+		}
 	}
 }
