@@ -17,7 +17,7 @@ func TestActionGet(t *testing.T) {
 
 	mux.HandleFunc(fmt.Sprintf("/actions/%s", actionId), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, "GET")
-		w.Write([]byte(`{"status":"ok","action":{"id":39,"status":"completed","user":"admin","created_at":"2019-04-30T16:33:03.317800+00:00","started_at":"2019-04-30T16:33:03.317019+00:00","completed_at":"2019-04-30T16:34:04.159922+00:00","resource":"ec200016","resource_type":"ECS","type":"delete_server","progress":100}}`))
+		w.Write([]byte(`{"status":"ok","action":{"id":39,"status":"completed","user":"admin","created_at":"2019-04-30T16:33:03.317800Z","started_at":"2019-04-30T16:33:03.317019Z","completed_at":"2019-04-30T16:34:04.159922Z","resource":"ec200016","resource_type":"ECS","type":"delete_server","progress":100}}`))
 	})
 
 	resp, _, err := client.Action.Get(input)
