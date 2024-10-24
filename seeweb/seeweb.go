@@ -115,7 +115,7 @@ func (c *Client) newRequest(method, url string, body interface{}, options ...Req
 			}
 		}
 	}
-	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.Config.Token))
+	req.Header.Add("X-APITOKEN", c.Config.Token)
 	req.Header.Add("Content-Type", "application/json")
 
 	if c.Config.UserAgent != "" {
